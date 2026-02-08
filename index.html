@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff1744 0%, #ff6b9d 25%, #ffa06b 75%, #ffb74d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            animation: gradientShift 8s ease infinite;
+            background-size: 400% 400%;
+            perspective: 1000px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 240, 245, 0.95));
+            padding: 60px 50px;
+            border-radius: 30px;
+            box-shadow: 
+                0 50px 100px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(255, 107, 157, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                inset 0 -10px 30px rgba(255, 23, 68, 0.1);
+            max-width: 550px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 107, 157, 0.3);
+            transform: perspective(1200px) rotateX(5deg) rotateY(-2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: perspective(1200px) rotateX(3deg) rotateY(-1deg);
+        }
+
+        .heart {
+            font-size: 100px;
+            margin-bottom: 20px;
+            animation: beat3D 0.6s infinite;
+            display: inline-block;
+            filter: drop-shadow(0 10px 20px rgba(255, 107, 157, 0.4)) drop-shadow(0 0 15px rgba(255, 23, 68, 0.3));
+        }
+
+        @keyframes beat3D {
+            0%, 100% { transform: scale(1) perspective(500px) rotateZ(0deg); }
+            25% { transform: scale(1.25) perspective(500px) rotateZ(5deg); }
+            50% { transform: scale(1) perspective(500px) rotateZ(0deg); }
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #ff1744, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 32px;
+            margin-bottom: 30px;
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+            transform: perspective(1000px) translateZ(15px);
+            text-shadow: 
+                0 5px 20px rgba(255, 107, 157, 0.3),
+                0 2px 10px rgba(255, 23, 68, 0.2);
+            filter: drop-shadow(0 5px 15px rgba(255, 107, 157, 0.3));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            min-height: 50px;
+            position: relative;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            transform: perspective(1200px) translateZ(20px);
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.5px;
+            font-family: 'Poppins', sans-serif;
+            transform: perspective(600px) translateZ(0);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.1));
+            pointer-events: none;
+        }
+
+        button:active {
+            filter: brightness(0.95);
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: rippleEffect 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #ff1744, #ff6b9d);
+            color: white;
+            padding: 18px 50px;
+            font-size: 22px;
+            box-shadow: 
+                0 20px 40px rgba(255, 23, 68, 0.4),
+                0 0 30px rgba(255, 107, 157, 0.5),
+                inset 0 2px 5px rgba(255, 255, 255, 0.3),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        #yesBtn:hover {
+            transform: perspective(600px) translateZ(20px) scale(1.1);
+            box-shadow: 
+                0 30px 60px rgba(255, 23, 68, 0.5),
+                0 0 40px rgba(255, 107, 157, 0.6),
+                inset 0 2px 5px rgba(255, 255, 255, 0.3),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #yesBtn:active {
+            transform: perspective(600px) translateZ(5px) scale(0.98);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #e0e0e0, #bdbdbd);
+            color: #333;
+            padding: 15px 35px;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.25),
+                inset 0 2px 5px rgba(255, 255, 255, 0.4),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        #noBtn:hover {
+            background: linear-gradient(135deg, #d0d0d0, #a0a0a0);
+            transform: perspective(600px) translateZ(10px) scale(1.05);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.4),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .celebration {
+            display: none;
+            animation: slideIn3D 0.7s ease;
+        }
+
+        @keyframes slideIn3D {
+            from {
+                opacity: 0;
+                transform: perspective(1000px) translateZ(-50px) rotateX(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: perspective(1000px) translateZ(0) rotateX(0deg);
+            }
+        }
+
+        .success-message {
+            font-size: 48px;
+            background: linear-gradient(135deg, #ff1744, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            font-weight: 900;
+            animation: bounce3D 0.6s ease;
+            filter: drop-shadow(0 5px 15px rgba(255, 107, 157, 0.4));
+            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.2);
+        }
+
+        @keyframes bounce3D {
+            0%, 100% { transform: translateY(0) perspective(600px) rotateX(0deg); }
+            50% { transform: translateY(-25px) perspective(600px) rotateX(5deg); }
+        }
+
+        .confirmation {
+            font-size: 22px;
+            color: #333;
+            margin-top: 25px;
+            line-height: 1.8;
+            font-weight: 600;
+            transform: perspective(1000px) translateZ(10px);
+            text-shadow: 
+                2px 2px 4px rgba(255, 107, 157, 0.2),
+                -1px -1px 3px rgba(255, 255, 255, 0.5);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background: #ff6b9d;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .emoji-rain {
+            position: fixed;
+            font-size: 50px;
+            pointer-events: none;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .stage-message {
+            font-size: 20px;
+            color: #ff6b9d;
+            font-weight: 700;
+            margin: 20px 0;
+            display: none;
+            transform: perspective(800px) rotateY(5deg) translateZ(10px);
+            text-shadow: 2px 2px 5px rgba(255, 107, 157, 0.3);
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 40px 25px;
+                border-radius: 25px;
+                transform: perspective(1200px) rotateX(2deg) rotateY(-1deg);
+                max-width: 100%;
+            }
+
+            .heart {
+                font-size: 70px;
+                margin-bottom: 15px;
+            }
+
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+                line-height: 1.4;
+            }
+
+            .button-container {
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            button {
+                padding: 14px 25px;
+                font-size: 16px;
+                border-radius: 40px;
+            }
+
+            #yesBtn {
+                padding: 14px 30px;
+                font-size: 18px;
+            }
+
+            #noBtn {
+                padding: 14px 25px;
+            }
+
+            .success-message {
+                font-size: 36px;
+                margin-bottom: 20px;
+            }
+
+            .confirmation {
+                font-size: 18px;
+                margin-top: 15px;
+                line-height: 1.6;
+            }
+
+            .stage-message {
+                font-size: 16px;
+                margin: 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                padding: 30px 20px;
+                border-radius: 20px;
+                transform: perspective(1000px) rotateX(1deg) rotateY(0deg);
+                box-shadow: 
+                    0 30px 60px rgba(0, 0, 0, 0.25),
+                    0 0 40px rgba(255, 107, 157, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                    inset 0 -10px 30px rgba(255, 23, 68, 0.1);
+            }
+
+            .heart {
+                font-size: 60px;
+                margin-bottom: 12px;
+            }
+
+            h1 {
+                font-size: 20px;
+                margin-bottom: 15px;
+                line-height: 1.3;
+                letter-spacing: 0.3px;
+            }
+
+            .button-container {
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 15px;
+            }
+
+            button {
+                padding: 12px 30px;
+                font-size: 15px;
+                width: 100%;
+                min-height: 50px;
+                border-radius: 35px;
+            }
+
+            #yesBtn {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+
+            #noBtn {
+                padding: 12px 30px;
+            }
+
+            .success-message {
+                font-size: 28px;
+                margin-bottom: 15px;
+            }
+
+            .confirmation {
+                font-size: 16px;
+                margin-top: 12px;
+                line-height: 1.5;
+            }
+
+            .stage-message {
+                font-size: 14px;
+                margin: 12px 0;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 25px 15px;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+
+            button {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+
+            .success-message {
+                font-size: 24px;
+            }
+
+            .confirmation {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart">💕</div>
+        <h1 id="mainTitle">Will you be my valentines sugar plom humpiyumpidumpling?</h1>
+        
+
+        
+        <div class="stage-message" id="stageMessage"></div>
+
+        <div class="button-container" id="buttonContainer">
+            <button id="yesBtn">Yes! 💗</button>
+            <button id="noBtn">No</button>
+        </div>
+
+        <div class="celebration" id="celebration">
+            <div class="success-message">🎉 YEY!! 🎉</div>
+            <div class="confirmation">
+                Thank you for accepting me as your valentines bby! ❤️<br>
+                Naa pakoy suprise nimo inig the day na gyud 🎁<br>
+                MWUAHH!! 💋💕
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const celebration = document.getElementById('celebration');
+        const buttonContainer = document.getElementById('buttonContainer');
+        const stageMessage = document.getElementById('stageMessage');
+        const container = document.querySelector('.container');
+
+        let stage = 0;
+        let yesScale = 1;
+
+        // Haptic Feedback Function
+        function triggerHaptic(duration = 50) {
+            if (navigator.vibrate) {
+                navigator.vibrate(duration);
+            }
+        }
+
+        // Ripple Effect on Click
+        function createRipple(event, button) {
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+
+            button.appendChild(ripple);
+
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        // Touch ripple for mobile
+        function createTouchRipple(event, button) {
+            const touch = event.touches[0];
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = touch.clientX - rect.left - size / 2;
+            const y = touch.clientY - rect.top - size / 2;
+
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+
+            button.appendChild(ripple);
+
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        // Yes Button Click with Haptic & Ripple
+        yesBtn.addEventListener('click', (e) => {
+            triggerHaptic(40);
+            if (e.clientX !== undefined) {
+                createRipple(e, yesBtn);
+            }
+            stage++;
+            
+            if (stage === 1) {
+                yesBtn.textContent = 'Are you sure? 💕';
+                stageMessage.style.display = 'block';
+                stageMessage.textContent = 'Think carefully... 👀';
+                triggerHaptic([30, 20, 30]);
+            } else if (stage === 2) {
+                yesBtn.textContent = 'REALLY YAY! 🎉';
+                stageMessage.textContent = 'Last chance to back out... 😏';
+                triggerHaptic([50, 30, 50]);
+            } else if (stage === 3) {
+                triggerHaptic([100, 50, 100, 50, 200]);
+                buttonContainer.style.display = 'none';
+                stageMessage.style.display = 'none';
+                celebration.style.display = 'block';
+                createConfetti();
+                createEmojiRain();
+            }
+        });
+
+        yesBtn.addEventListener('touchstart', (e) => {
+            createTouchRipple(e, yesBtn);
+        });
+
+        // No Button with Haptic & Swipe Support
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        noBtn.addEventListener('mouseover', () => {
+            const randomX = Math.random() * (window.innerWidth - 150);
+            const randomY = Math.random() * (window.innerHeight - 150);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        });
+
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            triggerHaptic(30);
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            createTouchRipple(e, noBtn);
+            
+            const randomX = Math.random() * (window.innerWidth - 120);
+            const randomY = Math.random() * (window.innerHeight - 120);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            
+            yesScale += 0.15;
+            yesBtn.style.transform = `scale(${yesScale})`;
+        });
+
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            triggerHaptic(30);
+            if (e.clientX !== undefined) {
+                createRipple(e, noBtn);
+            }
+            const randomX = Math.random() * (window.innerWidth - 150);
+            const randomY = Math.random() * (window.innerHeight - 150);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            
+            yesScale += 0.15;
+            yesBtn.style.transform = `scale(${yesScale})`;
+        });
+
+        // Tilt Effect on Device Motion (Mobile only)
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', (event) => {
+                const beta = event.beta;   // X axis rotation (-180 to 180)
+                const gamma = event.gamma; // Y axis rotation (-90 to 90)
+
+                const tiltX = gamma / 15;
+                const tiltY = beta / 15;
+
+                container.style.transform = `perspective(1200px) rotateX(${tiltY}deg) rotateY(${tiltX}deg)`;
+            });
+        }
+
+        // Shake Detection for Easter Egg
+        let lastX = 0, lastY = 0, lastZ = 0;
+        let shakeCount = 0;
+        let lastShakeTime = 0;
+
+        if (window.DeviceMotionEvent) {
+            window.addEventListener('devicemotion', (e) => {
+                const x = e.accelerationIncludingGravity.x;
+                const y = e.accelerationIncludingGravity.y;
+                const z = e.accelerationIncludingGravity.z;
+
+                const acceleration = Math.sqrt(x * x + y * y + z * z);
+                const now = Date.now();
+
+                if (acceleration > 35 && (now - lastShakeTime) > 200) {
+                    lastShakeTime = now;
+                    shakeCount++;
+                    triggerHaptic([50, 30, 50]);
+
+                    if (shakeCount >= 3) {
+                        triggerEasterEgg();
+                        shakeCount = 0;
+                    }
+                }
+            });
+        }
+
+        function triggerEasterEgg() {
+            triggerHaptic([100, 50, 200]);
+            yesBtn.style.animation = 'wiggle 0.5s ease-in-out 3';
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.textContent = '💕';
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * window.innerWidth + 'px';
+                    heart.style.top = Math.random() * window.innerHeight + 'px';
+                    heart.style.fontSize = (20 + Math.random() * 40) + 'px';
+                    heart.style.animation = 'fall 3s ease-in forwards';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '9999';
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 50);
+            }
+        }
+
+        // Add wiggle animation dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes wiggle {
+                0%, 100% { transform: scale(${yesScale}) rotate(0deg); }
+                25% { transform: scale(${yesScale}) rotate(-8deg); }
+                75% { transform: scale(${yesScale}) rotate(8deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        function createConfetti() {
+            for (let i = 0; i < 80; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-10px';
+                confetti.style.background = ['#ff1744', '#ff6b9d', '#ffa06b', '#ffb74d', '#ff69b4'][Math.floor(Math.random() * 5)];
+                confetti.style.animation = `fall ${2 + Math.random() * 1.5}s linear forwards`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3500);
+            }
+        }
+
+        function createEmojiRain() {
+            const emojis = ['💕', '💗', '💖', '💝', '❤️', '🌹', '😻', '🐱'];
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.classList.add('emoji-rain');
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * window.innerWidth + 'px';
+                    emoji.style.top = '-50px';
+                    document.body.appendChild(emoji);
+                    setTimeout(() => emoji.remove(), 3500);
+                }, i * 80);
+            }
+        }
+    </script>
+</body>
+</html>
